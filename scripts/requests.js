@@ -12,6 +12,8 @@ export const getBooksBySearch = async (searchTerm) => {
     const data = await response.json(); // so this gives me a whole array worth of responses for the flowers search term
     // although in an object with an items array which is the search results
 
+    console.log(data);
+
     const booksArr = data.items.map((current) => {
         const volumeInfo = current.volumeInfo;
         // console.log(volumeInfo);

@@ -5,19 +5,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="module" src="./scripts/script.js" defer></script>
+        <link rel="stylesheet" href="./Styles/styles.css" />
         <title>Google Books</title>
     </head>
     <body>
-        <h1>Google Books Search</h1>
+        <div class="page-title">
+            <h1>Google Books Search</h1>
 
-        <form>
-            <input
-                id="searchBar"
-                type="text"
-                placeholder="Type here to search"
-            />
-            <input id="submitBtn" type="submit" value="search" />
-        </form>
+            <form>
+                <input
+                    id="searchBar"
+                    type="text"
+                    placeholder="Type here to search"
+                />
+                <input id="submitBtn" type="submit" value="search" />
+            </form>
+        </div>
 
         <section id="bookGrid"></section>
     </body>

@@ -8,6 +8,7 @@ form.addEventListener("submit", (e) => {
     console.log("searching");
     bookGrid.innerHTML = "";
     getBooksBySearch(seachBar.value);
+    searchBar.value = "";
     e.preventDefault();
     e.stopPropagation();
 });
