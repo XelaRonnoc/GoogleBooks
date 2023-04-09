@@ -14,6 +14,11 @@ export const getBooksBySearch = async (searchTerm) => {
 
     console.log(data);
 
+    if (data["totalItems"] === 0) {
+        renderNoResults();
+        return;
+    }
+
     const booksArr = data.items.map((current) => {
         const volumeInfo = current.volumeInfo;
         const saleInfo = current.saleInfo;
@@ -54,8 +59,6 @@ export const getBooksBySearch = async (searchTerm) => {
             : (book.saleability = "No sales info");
         return book;
     });
-    console.log(data);
-    console.log(booksArr);
 
     renderAll(booksArr);
     return booksArr;
@@ -65,4 +68,12 @@ const renderAll = (booksArr) => {
     booksArr.forEach((element) => {
         element.render(document.getElementById("bookGrid"));
     });
+};
+
+const renderNoResults = () => {
+    const feedback = document.querySelector("#feedback");
+    const text = document.createTextNode(
+        "No Results were found for this seach please try another"
+    );
+    feedback.appendChild(text);
 };
