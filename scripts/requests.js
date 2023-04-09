@@ -16,6 +16,7 @@ export const getBooksBySearch = async (searchTerm) => {
 
     const booksArr = data.items.map((current) => {
         const volumeInfo = current.volumeInfo;
+        const saleInfo = current.saleInfo;
         // console.log(volumeInfo);
         const book = new Book();
         volumeInfo["imageLinks"]
@@ -30,8 +31,30 @@ export const getBooksBySearch = async (searchTerm) => {
         volumeInfo["description"]
             ? (book.description = volumeInfo["description"])
             : (book.description = "No Description");
+        volumeInfo["categories"]
+            ? (book.categories = volumeInfo["categories"])
+            : (book.categories = "No category");
+        volumeInfo["language"]
+            ? (book.language = volumeInfo["language"])
+            : (book.language = "No language info");
+        volumeInfo["publishedDate"]
+            ? (book.publishedDate = volumeInfo["publishedDate"])
+            : (book.publishedDate = "No published date");
+
+        saleInfo["retailPrice"]
+            ? (book.price = saleInfo["retailPrice"]["amount"])
+            : (book.price = "No price");
+
+        saleInfo["country"]
+            ? (book.country = saleInfo["country"])
+            : (book.country = "No country");
+
+        saleInfo["saleability"]
+            ? (book.saleability = saleInfo["saleability"])
+            : (book.saleability = "No sales info");
         return book;
     });
+    console.log(data);
     console.log(booksArr);
 
     renderAll(booksArr);

@@ -1,13 +1,19 @@
 import { wordLimiter } from "./global-functions.js";
 export class Book {
+    //volumeInfo
     image;
     author;
     title;
     description;
-    release;
-    publishDate;
+    categories;
+    language;
+    publishedDate;
+
+    //saleInfo
+    price;
     country;
-    languages;
+    saleability;
+
     constructor() {}
 
     render(grid) {
@@ -80,6 +86,44 @@ export class Book {
         innerContainer.appendChild(author);
         const authorText = document.createTextNode("Author: " + this.author);
         author.appendChild(authorText);
+
+        const price = document.createElement("p");
+        price.classList.add("inner__price");
+        innerContainer.appendChild(price);
+        const priceText = document.createTextNode("Price: " + this.price);
+        price.appendChild(priceText);
+
+        const categories = document.createElement("p");
+        categories.classList.add("inner__categories");
+        innerContainer.appendChild(categories);
+        const categoriesText = document.createTextNode(
+            "categories: " + this.categories
+        );
+        categories.appendChild(categoriesText);
+
+        const language = document.createElement("p");
+        language.classList.add("inner__language");
+        innerContainer.appendChild(language);
+        const languageText = document.createTextNode(
+            "languages: " + this.language
+        );
+        language.appendChild(languageText);
+
+        const publishedDate = document.createElement("p");
+        publishedDate.classList.add("inner__publishedDate");
+        innerContainer.appendChild(publishedDate);
+        const publishedDateText = document.createTextNode(
+            "Published Date: " + this.publishedDate
+        );
+        publishedDate.appendChild(publishedDateText);
+
+        const saleability = document.createElement("p");
+        saleability.classList.add("inner__saleability");
+        innerContainer.appendChild(saleability);
+        const saleabilityText = document.createTextNode(
+            "saleability: " + this.saleability
+        );
+        saleability.appendChild(saleabilityText);
 
         const description = document.createElement("p");
         description.classList.add("inner__description");
