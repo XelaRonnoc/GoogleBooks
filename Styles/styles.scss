@@ -13,3 +13,25 @@
     align-items: center;
     text-align: center;
 }
+
+.expanded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #6e6d6d, $alpha: 0.5);
+    z-index: 999;
+
+    &__inner {
+        background-color: rgba($color: #ffffff, $alpha: 1);
+        width: 50%;
+        height: 70%;
+        overflow: scroll;
+        padding: 10px;
+        border: 3px solid black;
+        border-radius: 12px;
+    }
+}
