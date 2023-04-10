@@ -1,0 +1,82 @@
+@use "pallette";
+
+.expanded__inner {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 350px;
+    border: 2px solid lightgray;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+    background-color: pallette.$book-card-background-color;
+    color: pallette.$para-color;
+
+    & p {
+        margin: 5px 0px;
+    }
+}
+
+.expanded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #6e6d6d, $alpha: 0.5);
+    z-index: 999;
+
+    &__inner {
+        width: 50%;
+        height: 70%;
+        overflow: scroll;
+        padding: 10px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid lightgray;
+        background-color: pallette.$book-card-background-color;
+        color: pallette.$para-color;
+
+        & p {
+            margin: 5px 0px;
+        }
+    }
+}
+
+.inner {
+    &__image {
+        align-self: center;
+    }
+
+    &__title {
+        text-align: center;
+        text-decoration: underline;
+        font-size: large;
+        color: pallette.$title-colors;
+    }
+}
+
+.exit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: flex-start;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50px;
+    user-select: none;
+
+    & p {
+        color: pallette.$sub-header-colors;
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: pallette.$para-color;
+    }
+}

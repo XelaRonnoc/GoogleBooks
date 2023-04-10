@@ -1,4 +1,11 @@
 @use "bookCard";
+@use "pallette";
+@use "expandedCard";
+
+body {
+    background-color: pallette.$background-color;
+}
+
 #bookGrid {
     display: flex;
     flex-wrap: wrap;
@@ -12,26 +19,40 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    color: pallette.$title-colors;
+
+    & h1 {
+        font-family: "Orbitron", sans-serif;
+    }
 }
 
-.expanded {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($color: #6e6d6d, $alpha: 0.5);
-    z-index: 999;
+.search-container {
+    font-family: "Orbitron", sans-serif;
 
-    &__inner {
-        background-color: rgba($color: #ffffff, $alpha: 1);
-        width: 50%;
-        height: 70%;
-        overflow: scroll;
-        padding: 10px;
-        border: 3px solid black;
-        border-radius: 12px;
+    &__input {
+        background-color: whitesmoke;
+        border: 0px;
+        outline: none;
+        color: pallette.$background-color;
     }
+
+    &__btn {
+        background-color: pallette.$book-card-background-color;
+        color: pallette.$para-color;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: pallette.$background-color;
+        }
+    }
+}
+
+.sub-header {
+    color: pallette.$sub-header-colors;
+}
+
+.hide {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
 }
