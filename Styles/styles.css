@@ -101,6 +101,8 @@
 
 body {
   background-color: #1b2021;
+  display: flex;
+  flex-direction: column;
 }
 
 #bookGrid {
@@ -148,4 +150,20 @@ body {
   display: none;
   opacity: 0;
   visibility: hidden;
+}
+
+.resultsNav {
+  display: flex;
+  margin: 50px;
+  justify-content: center;
+  gap: 20px;
+}
+.resultsNav > button {
+  width: 100px;
+  background-color: #454545;
+  color: #d9cab3;
+  border-radius: 8px;
+}
+.resultsNav > button:hover {
+  background-color: #1b2021;
 }

@@ -4,6 +4,8 @@
 
 body {
     background-color: pallette.$background-color;
+    display: flex;
+    flex-direction: column;
 }
 
 #bookGrid {
@@ -55,4 +57,22 @@ body {
     display: none;
     opacity: 0;
     visibility: hidden;
+}
+
+.resultsNav {
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    gap: 20px;
+
+    & > button {
+        width: 100px;
+        background-color: pallette.$book-card-background-color;
+        color: pallette.$para-color;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: pallette.$background-color;
+        }
+    }
 }

@@ -1,9 +1,9 @@
 import { Book } from "./book.js";
 import { toggleLoadingMessage } from "./dom-global-functions.js";
 
-export const getBooksBySearch = async (searchTerm) => {
+export const getBooksBySearch = async (searchTerm, maxResults, startIndex) => {
     const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`,
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=${startIndex}&maxResults=${maxResults}`,
         {
             headers: {
                 Accept: "application/json",
@@ -63,7 +63,6 @@ export const getBooksBySearch = async (searchTerm) => {
     });
 
     renderAll(booksArr);
-    return booksArr;
 };
 
 const renderAll = (booksArr) => {
