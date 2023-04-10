@@ -1,4 +1,6 @@
 import { Book } from "./book.js";
+import { toggleLoadingMessage } from "./dom-global-functions.js";
+
 export const getBooksBySearch = async (searchTerm) => {
     const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`,
@@ -7,7 +9,7 @@ export const getBooksBySearch = async (searchTerm) => {
                 Accept: "application/json",
             },
         }
-    );
+    ).finally(toggleLoadingMessage);
 
     const data = await response.json(); // so this gives me a whole array worth of responses for the flowers search term
     // although in an object with an items array which is the search results
@@ -22,7 +24,6 @@ export const getBooksBySearch = async (searchTerm) => {
     const booksArr = data.items.map((current) => {
         const volumeInfo = current.volumeInfo;
         const saleInfo = current.saleInfo;
-        // console.log(volumeInfo);
         const book = new Book();
         volumeInfo["imageLinks"]
             ? (book.image = volumeInfo["imageLinks"])
@@ -57,6 +58,7 @@ export const getBooksBySearch = async (searchTerm) => {
         saleInfo["saleability"]
             ? (book.saleability = saleInfo["saleability"])
             : (book.saleability = "No sales info");
+
         return book;
     });
 

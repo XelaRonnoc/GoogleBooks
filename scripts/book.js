@@ -36,19 +36,25 @@ export class Book {
 
         const author = document.createElement("p");
         author.classList.add("card__author");
+        const authHead = document.createElement("span");
+        authHead.classList.add("sub-header");
+        const authHeadText = document.createTextNode("Author: ");
+        authHead.appendChild(authHeadText);
+        author.appendChild(authHead);
         container.appendChild(author);
-        const authorText = document.createTextNode("Author: " + this.author);
+        const authorText = document.createTextNode(this.author);
         author.appendChild(authorText);
 
         const description = document.createElement("p");
         description.classList.add("card__description");
+        const descHead = document.createElement("span");
+        descHead.classList.add("sub-header");
+        const descHeadText = document.createTextNode("Description: ");
+        descHead.appendChild(descHeadText);
+        description.appendChild(descHead);
         container.appendChild(description);
         const descText = document.createTextNode(
-            "Description: " +
-                this.description.substring(
-                    0,
-                    wordLimiter(this.description, 120)
-                ) +
+            this.description.substring(0, wordLimiter(this.description, 120)) +
                 "..."
         );
         description.appendChild(descText);
@@ -67,6 +73,23 @@ export class Book {
         const innerContainer = document.createElement("div");
         innerContainer.classList.add("expanded__inner");
         container.appendChild(innerContainer);
+        innerContainer.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        const exitContainer = document.createElement("div");
+        exitContainer.classList.add("exit");
+        exitContainer.innerHTML = `<p> X <p>`;
+        innerContainer.appendChild(exitContainer);
+        exitContainer.addEventListener("click", (e) => {
+            const childEls = body.children;
+            for (let i = 0; i < childEls.length; i++) {
+                if (childEls[i].className === "expanded") {
+                    body.removeChild(childEls[i]);
+                }
+            }
+            e.stopPropagation();
+        });
 
         const image = document.createElement("img");
         image.classList.add("inner__image");
@@ -84,53 +107,82 @@ export class Book {
         const author = document.createElement("p");
         author.classList.add("inner__author");
         innerContainer.appendChild(author);
-        const authorText = document.createTextNode("Author: " + this.author);
+        const authHead = document.createElement("span");
+        authHead.classList.add("sub-header");
+        const authHeadText = document.createTextNode("Author: ");
+        authHead.appendChild(authHeadText);
+        author.appendChild(authHead);
+        const authorText = document.createTextNode(this.author);
         author.appendChild(authorText);
 
         const price = document.createElement("p");
         price.classList.add("inner__price");
         innerContainer.appendChild(price);
+        const priceHead = document.createElement("span");
+        priceHead.classList.add("sub-header");
+        const priceHeadText = document.createTextNode("Price: ");
+        priceHead.appendChild(priceHeadText);
+        price.appendChild(priceHead);
         const priceText = document.createTextNode("Price: " + this.price);
         price.appendChild(priceText);
 
         const categories = document.createElement("p");
         categories.classList.add("inner__categories");
         innerContainer.appendChild(categories);
-        const categoriesText = document.createTextNode(
-            "categories: " + this.categories
-        );
+        const catHead = document.createElement("span");
+        catHead.classList.add("sub-header");
+        const catHeadText = document.createTextNode("Categories: ");
+        catHead.appendChild(catHeadText);
+        categories.appendChild(catHead);
+        const categoriesText = document.createTextNode(this.categories);
         categories.appendChild(categoriesText);
 
         const language = document.createElement("p");
         language.classList.add("inner__language");
         innerContainer.appendChild(language);
+        const langHead = document.createElement("span");
+        langHead.classList.add("sub-header");
+        const langHeadText = document.createTextNode("Languages: ");
+        langHead.appendChild(langHeadText);
+        language.appendChild(langHead);
         const languageText = document.createTextNode(
-            "languages: " + this.language
+            "Languages: " + this.language
         );
         language.appendChild(languageText);
 
         const publishedDate = document.createElement("p");
         publishedDate.classList.add("inner__publishedDate");
         innerContainer.appendChild(publishedDate);
-        const publishedDateText = document.createTextNode(
-            "Published Date: " + this.publishedDate
-        );
+        const pubHead = document.createElement("span");
+        pubHead.classList.add("sub-header");
+        const pubHeadText = document.createTextNode("Published Date: ");
+        pubHead.appendChild(pubHeadText);
+        publishedDate.appendChild(pubHead);
+        const publishedDateText = document.createTextNode(this.publishedDate);
         publishedDate.appendChild(publishedDateText);
 
         const saleability = document.createElement("p");
         saleability.classList.add("inner__saleability");
         innerContainer.appendChild(saleability);
+        const availHead = document.createElement("span");
+        availHead.classList.add("sub-header");
+        const availHeadText = document.createTextNode("Availability: ");
+        availHead.appendChild(availHeadText);
+        saleability.appendChild(availHead);
         const saleabilityText = document.createTextNode(
-            "saleability: " + this.saleability
+            this.saleability.split("_").join(" ")
         );
         saleability.appendChild(saleabilityText);
 
         const description = document.createElement("p");
         description.classList.add("inner__description");
         innerContainer.appendChild(description);
-        const descText = document.createTextNode(
-            "Description: " + this.description
-        );
+        const descHead = document.createElement("span");
+        descHead.classList.add("sub-header");
+        const descHeadText = document.createTextNode("Description: ");
+        descHead.appendChild(descHeadText);
+        description.appendChild(descHead);
+        const descText = document.createTextNode(this.description);
         description.appendChild(descText);
     }
 }
