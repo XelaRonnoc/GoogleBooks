@@ -5,20 +5,50 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="module" src="./scripts/script.js" defer></script>
+        <link rel="stylesheet" href="./Styles/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron&family=Rubik+Iso&display=swap"
+            rel="stylesheet"
+        />
         <title>Google Books</title>
     </head>
     <body>
-        <h1>Google Books Search</h1>
+        <div class="page-title">
+            <h1>Google Books Search</h1>
 
-        <form>
-            <input
-                id="searchBar"
-                type="text"
-                placeholder="Type here to search"
-            />
-            <input id="submitBtn" type="submit" value="search" />
-        </form>
+            <form class="search-container">
+                <input
+                    id="searchBar"
+                    class="search-container__input"
+                    type="text"
+                    placeholder="Type here to search"
+                    required
+                />
+                <input
+                    id="submitBtn"
+                    class="search-container__btn"
+                    type="submit"
+                    value="Search"
+                />
+                <button id="clearBtn" class="search-container__btn">
+                    Clear
+                </button>
+                <p id="feedback" class="search-container__feedback"></p>
+                <p id="loadingMessage" class="hide">Loading...</p>
+            </form>
+        </div>
 
         <section id="bookGrid"></section>
+
+        <!-- <div class="expanded">
+            <div class="expanded__inner"></div>
+        </div> -->
+
+        <div class="resultsNav">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
     </body>
 </html>

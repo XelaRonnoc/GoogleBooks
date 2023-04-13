@@ -1,0 +1,33 @@
+@use "pallette";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 350px;
+    border: 2px solid lightgray;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+    background-color: pallette.$book-card-background-color;
+    color: pallette.$para-color;
+
+    & p {
+        margin: 5px 0px;
+    }
+
+    &:hover {
+        box-shadow: 10px 10px 10px gray;
+    }
+
+    &__image {
+        align-self: center;
+    }
+
+    &__title {
+        text-align: center;
+        text-decoration: underline;
+        font-size: large;
+        color: pallette.$title-colors;
+    }
+}
