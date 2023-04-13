@@ -7,16 +7,18 @@ const bookGrid = document.getElementById("bookGrid");
 const body = document.querySelector("body");
 const feedback = document.getElementById("feedback");
 const nextBtn = document.getElementById("nextBtn");
+const clearBtn = document.getElementById("clearBtn");
+
 const maxResults = 30;
 let searchStartIndex = 0;
 let currentSearch = "";
+
 form.addEventListener("submit", (e) => {
     toggleLoadingMessage();
     bookGrid.innerHTML = "";
     currentSearch = seachBar.value;
     searchStartIndex = 0;
     getBooksBySearch(currentSearch, maxResults, searchStartIndex);
-    searchBar.value = "";
     feedback.innerHTML = "";
     e.preventDefault();
     e.stopPropagation();
@@ -49,5 +51,13 @@ prevBtn.addEventListener("click", (e) => {
     }
     bookGrid.innerHTML = "";
     getBooksBySearch(currentSearch, maxResults, searchStartIndex);
+    e.stopPropagation();
+});
+
+clearBtn.addEventListener("click", (e) => {
+    bookGrid.innerHTML = "";
+    seachBar.value = "";
+    feedback.innerHTML = "";
+    e.preventDefault();
     e.stopPropagation();
 });
