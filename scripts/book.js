@@ -1,4 +1,5 @@
 import { wordLimiter } from "./global-functions.js";
+import { makeElement } from "./dom-global-functions.js";
 export class Book {
     //volumeInfo
     image;
@@ -17,47 +18,29 @@ export class Book {
     constructor() {}
 
     render(grid) {
-        const container = document.createElement("div");
-        container.classList.add("card");
-        grid.appendChild(container);
-
-        const image = document.createElement("img");
-        image.classList.add("card__image");
+        const container = makeElement(grid, "card", "div");
+        const image = makeElement(container, "card__image", "img");
         this.image.thumbnail
             ? (image.src = this.image.thumbnail)
             : (image.src = "");
-        container.appendChild(image);
-
-        const title = document.createElement("p");
-        title.classList.add("card__title");
-        const titleText = document.createTextNode(this.title);
-        title.appendChild(titleText);
-        container.appendChild(title);
-
-        const author = document.createElement("p");
-        author.classList.add("card__author");
-        const authHead = document.createElement("span");
-        authHead.classList.add("sub-header");
-        const authHeadText = document.createTextNode("Author: ");
-        authHead.appendChild(authHeadText);
-        author.appendChild(authHead);
-        container.appendChild(author);
-        const authorText = document.createTextNode(this.author);
-        author.appendChild(authorText);
-
-        const description = document.createElement("p");
-        description.classList.add("card__description");
-        const descHead = document.createElement("span");
-        descHead.classList.add("sub-header");
-        const descHeadText = document.createTextNode("Description: ");
-        descHead.appendChild(descHeadText);
-        description.appendChild(descHead);
-        container.appendChild(description);
-        const descText = document.createTextNode(
+        const title = makeElement(container, "card__title", "p", this.title);
+        const author = makeElement(container, "card__author", "p", this.author);
+        const authHead = makeElement(author, "sub-header", "span", "Author: ");
+        author.prepend(authHead);
+        const description = makeElement(
+            container,
+            "card__description",
+            "p",
             this.description.substring(0, wordLimiter(this.description, 120)) +
                 "..."
         );
-        description.appendChild(descText);
+        const descHead = makeElement(
+            description,
+            "sub-header",
+            "span",
+            "Description: "
+        );
+        description.prepend(descHead);
 
         container.addEventListener("click", (e) => {
             this.renderModule(document.querySelector("body"));
@@ -66,21 +49,15 @@ export class Book {
     }
 
     renderModule(body) {
-        const container = document.createElement("div");
-        container.classList.add("expanded");
-        body.appendChild(container);
+        const container = makeElement(body, "expanded", "div");
 
-        const innerContainer = document.createElement("div");
-        innerContainer.classList.add("expanded__inner");
-        container.appendChild(innerContainer);
+        const innerContainer = makeElement(container, "expanded__inner", "div");
         innerContainer.addEventListener("click", (e) => {
             e.stopPropagation();
         });
 
-        const exitContainer = document.createElement("div");
-        exitContainer.classList.add("exit");
+        const exitContainer = makeElement(innerContainer, "exit", "div");
         exitContainer.innerHTML = `<p> X <p>`;
-        innerContainer.appendChild(exitContainer);
         exitContainer.addEventListener("click", (e) => {
             const childEls = body.children;
             for (let i = 0; i < childEls.length; i++) {
@@ -91,100 +68,111 @@ export class Book {
             e.stopPropagation();
         });
 
-        const image = document.createElement("img");
-        image.classList.add("inner__image");
+        const image = makeElement(innerContainer, "inner__image", "img");
         this.image.thumbnail
             ? (image.src = this.image.thumbnail)
             : (image.src = "");
-        innerContainer.appendChild(image);
 
-        const title = document.createElement("p");
-        title.classList.add("inner__title");
-        const titleText = document.createTextNode(this.title);
-        title.appendChild(titleText);
-        innerContainer.appendChild(title);
-
-        const author = document.createElement("p");
-        author.classList.add("inner__author");
-        innerContainer.appendChild(author);
-        const authHead = document.createElement("span");
-        authHead.classList.add("sub-header");
-        const authHeadText = document.createTextNode("Author: ");
-        authHead.appendChild(authHeadText);
-        author.appendChild(authHead);
-        const authorText = document.createTextNode(this.author);
-        author.appendChild(authorText);
-
-        const price = document.createElement("p");
-        price.classList.add("inner__price");
-        innerContainer.appendChild(price);
-        const priceHead = document.createElement("span");
-        priceHead.classList.add("sub-header");
-        const priceHeadText = document.createTextNode("Price: ");
-        priceHead.appendChild(priceHeadText);
-        price.appendChild(priceHead);
-        const priceText = document.createTextNode("Price: " + this.price);
-        price.appendChild(priceText);
-
-        const categories = document.createElement("p");
-        categories.classList.add("inner__categories");
-        innerContainer.appendChild(categories);
-        const catHead = document.createElement("span");
-        catHead.classList.add("sub-header");
-        const catHeadText = document.createTextNode("Categories: ");
-        catHead.appendChild(catHeadText);
-        categories.appendChild(catHead);
-        const categoriesText = document.createTextNode(this.categories);
-        categories.appendChild(categoriesText);
-
-        const language = document.createElement("p");
-        language.classList.add("inner__language");
-        innerContainer.appendChild(language);
-        const langHead = document.createElement("span");
-        langHead.classList.add("sub-header");
-        const langHeadText = document.createTextNode("Languages: ");
-        langHead.appendChild(langHeadText);
-        language.appendChild(langHead);
-        const languageText = document.createTextNode(
-            "Languages: " + this.language
+        const title = makeElement(
+            innerContainer,
+            "inner__title",
+            "p",
+            this.title
         );
-        language.appendChild(languageText);
 
-        const publishedDate = document.createElement("p");
-        publishedDate.classList.add("inner__publishedDate");
-        innerContainer.appendChild(publishedDate);
-        const pubHead = document.createElement("span");
-        pubHead.classList.add("sub-header");
-        const pubHeadText = document.createTextNode("Published Date: ");
-        pubHead.appendChild(pubHeadText);
-        publishedDate.appendChild(pubHead);
-        const publishedDateText = document.createTextNode(this.publishedDate);
-        publishedDate.appendChild(publishedDateText);
+        const author = makeElement(
+            innerContainer,
+            "inner__author",
+            "p",
+            this.author
+        );
+        const authHead = makeElement(author, "sub-header", "span", "Author: ");
+        author.prepend(authHead);
 
-        const saleability = document.createElement("p");
-        saleability.classList.add("inner__saleability");
-        innerContainer.appendChild(saleability);
-        const availHead = document.createElement("span");
-        availHead.classList.add("sub-header");
-        const availHeadText = document.createTextNode("Availability: ");
-        availHead.appendChild(availHeadText);
-        saleability.appendChild(availHead);
-        const saleabilityText = document.createTextNode(
+        const price = makeElement(
+            innerContainer,
+            "inner__price",
+            "span",
+            this.price
+        );
+        const priceHead = makeElement(price, "sub-header", "span", `Price: `);
+        const priceSign = makeElement(
+            price,
+            "",
+            "span",
+            `${this.price !== "No price" ? "$" : ""}`
+        );
+        price.prepend(priceSign);
+        price.prepend(priceHead);
+
+        const categories = makeElement(
+            innerContainer,
+            "inner__categories",
+            "p",
+            this.categories
+        );
+        const catHead = makeElement(
+            categories,
+            "sub-header",
+            "span",
+            "Categories: "
+        );
+        categories.prepend(catHead);
+
+        const language = makeElement(
+            innerContainer,
+            "inner__language",
+            "p",
+            this.language
+        );
+        const langHead = makeElement(
+            language,
+            "sub-header",
+            "span",
+            "Languages: "
+        );
+        language.prepend(langHead);
+
+        const publishedDate = makeElement(
+            innerContainer,
+            "inner__publishedDate",
+            "p",
+            this.publishedDate
+        );
+        const pubHead = makeElement(
+            publishedDate,
+            "sub-header",
+            "span",
+            "Published Date: "
+        );
+        publishedDate.prepend(pubHead);
+
+        const saleability = makeElement(
+            innerContainer,
+            "inner__saleability",
+            "p",
             this.saleability.split("_").join(" ")
         );
-        saleability.appendChild(saleabilityText);
+        const availHead = makeElement(
+            saleability,
+            "sub-header",
+            "span",
+            "Availability: "
+        );
+        saleability.prepend(availHead);
 
-        const description = document.createElement("p");
-        description.classList.add("inner__description");
-        innerContainer.appendChild(description);
-        const descHead = document.createElement("span");
-        descHead.classList.add("sub-header");
-        const descHeadText = document.createTextNode("Description: ");
-        descHead.appendChild(descHeadText);
-        description.appendChild(descHead);
-        const descText = document.createTextNode(this.description);
-        description.appendChild(descText);
+        const description = makeElement(
+            innerContainer,
+            "inner__description",
+            "p",
+            this.description
+        );
+        const descHead = makeElement(
+            description,
+            "sub-header",
+            "span",
+            "Description: "
+        );
+        description.prepend(descHead);
     }
 }
-
-// find up to the last full stop within search length
