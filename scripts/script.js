@@ -35,22 +35,26 @@ body.addEventListener("click", (e) => {
 });
 
 nextBtn.addEventListener("click", (e) => {
-    toggleLoadingMessage();
-    searchStartIndex += maxResults;
-    bookGrid.innerHTML = "";
-    getBooksBySearch(currentSearch, maxResults, searchStartIndex);
+    if (currentSearch) {
+        toggleLoadingMessage();
+        searchStartIndex += maxResults;
+        bookGrid.innerHTML = "";
+        getBooksBySearch(currentSearch, maxResults, searchStartIndex);
+    }
     e.stopPropagation();
 });
 
 prevBtn.addEventListener("click", (e) => {
-    toggleLoadingMessage();
-    if (searchStartIndex - maxResults >= 0) {
-        searchStartIndex -= maxResults;
-    } else {
-        searchStartIndex = 0;
+    if (currentSearch) {
+        toggleLoadingMessage();
+        if (searchStartIndex - maxResults >= 0) {
+            searchStartIndex -= maxResults;
+        } else {
+            searchStartIndex = 0;
+        }
+        bookGrid.innerHTML = "";
+        getBooksBySearch(currentSearch, maxResults, searchStartIndex);
     }
-    bookGrid.innerHTML = "";
-    getBooksBySearch(currentSearch, maxResults, searchStartIndex);
     e.stopPropagation();
 });
 
@@ -58,6 +62,7 @@ clearBtn.addEventListener("click", (e) => {
     bookGrid.innerHTML = "";
     seachBar.value = "";
     feedback.innerHTML = "";
+    currentSearch = "";
     e.preventDefault();
     e.stopPropagation();
 });
