@@ -6,11 +6,12 @@
     width: 250px;
     height: 350px;
     border: 2px solid lightgray;
-    border-radius: 12px;
+    border-radius: 7px;
     padding: 20px;
     overflow: hidden;
     background-color: pallette.$book-card-background-color;
     color: pallette.$para-color;
+    user-select: none;
 
     & p {
         margin: 5px 0px;
@@ -78,5 +79,6 @@
 
     &:hover {
         background-color: pallette.$para-color;
+        cursor: pointer;
     }
 }
