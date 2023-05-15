@@ -33,15 +33,22 @@ body {
 
     &__input {
         background-color: whitesmoke;
-        border: 0px;
+        border: 2px solid lightgray;
+        border-radius: 5px;
         outline: none;
         color: pallette.$background-color;
+        padding: 3px 5px;
+
+        &:hover {
+            border: 2px solid skyblue;
+        }
     }
 
     &__btn {
         background-color: pallette.$book-card-background-color;
         color: pallette.$para-color;
-        border-radius: 8px;
+        border-radius: 5px;
+        padding: 3px 5px;
 
         &:hover {
             background-color: pallette.$background-color;
@@ -69,7 +76,8 @@ body {
         width: 100px;
         background-color: pallette.$book-card-background-color;
         color: pallette.$para-color;
-        border-radius: 8px;
+        border-radius: 5px;
+        padding: 3px 5px;
 
         &:hover {
             background-color: pallette.$background-color;
