@@ -132,8 +132,6 @@ body {
 
 .search-container {
   font-family: "Orbitron", sans-serif;
-  display: flex;
-  gap: 3px;
 }
 .search-container__input {
   background-color: whitesmoke;
