@@ -30,6 +30,8 @@ body {
 
 .search-container {
     font-family: "Orbitron", sans-serif;
+    display: flex;
+    gap: 3px;
 
     &__input {
         background-color: whitesmoke;
@@ -37,7 +39,8 @@ body {
         border-radius: 5px;
         outline: none;
         color: pallette.$background-color;
-        padding: 3px 5px;
+        padding: 7px 12px;
+        font-size: 1.2rem;
 
         &:hover {
             border: 2px solid skyblue;
@@ -48,7 +51,8 @@ body {
         background-color: pallette.$book-card-background-color;
         color: pallette.$para-color;
         border-radius: 5px;
-        padding: 3px 5px;
+        padding: 7px 12px;
+        font-size: 1.2rem;
 
         &:hover {
             background-color: pallette.$background-color;
@@ -77,7 +81,8 @@ body {
         background-color: pallette.$book-card-background-color;
         color: pallette.$para-color;
         border-radius: 5px;
-        padding: 3px 5px;
+        padding: 7px 12px;
+        font-size: 1.2rem;
 
         &:hover {
             background-color: pallette.$background-color;
